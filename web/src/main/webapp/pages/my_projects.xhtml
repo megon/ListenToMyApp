@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces"
+	xmlns:prime="http://primefaces.prime.com.tr/ui"
+	xmlns:lc="http://java.sun.com/jsf/composite/lmacommon">
+	
+	<f:loadBundle basename="messages.projectBundle" var="projectMsgs" />
+
+	<ui:composition template="layout/layout.xhtml">
+	
+		<ui:param name="title" value="${projectMsgs.tableTitle}" />
+
+		<ui:define name="content">
+				<div id="centered_container">
+					<div id="centered_content" class="rounded_box shadowed">
+						<lc:projectList projects="#{myProjectsBean.myProjects}" title="#{projectMsgs.tableTitle}" />
+						
+						<div class="footer_rounded">
+
+						    <h:outputLink value="#{request.contextPath}/projects/new" styleClass="small button blue" title="#{projectMsgs.createProject}">  
+						        <h:outputText value="#{projectMsgs.createProject}"/>  
+						    </h:outputLink>  
+
+						</div>
+					</div><!-- centered_content -->
+				</div><!-- centered_container -->
+		</ui:define>
+				
+	</ui:composition>
+</html>

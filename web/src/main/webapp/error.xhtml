@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:lc="http://java.sun.com/jsf/composite/lmacommon"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces">
+<h:head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title><ui:insert name="title">#{errorMsgs.genericErrorTitle}</ui:insert></title>
+	<link href="#{request.contextPath}/css/erro.css" media="screen" rel="stylesheet" type="text/css" />
+</h:head>
+<body>
+	<div id="logo"></div>
+	<f:loadBundle basename="messages.overriddenMessages" var="errorMsgs" />
+	<div id="box" class="rounded_box centered_box shadowed">
+		<lc:messages globalOnly="true" />
+		<div id="" class="LMAmessagesError">
+			<h:form id="formLogin" prependId="false">
+				<h1 class="erro"><h:outputText value="#{errorMsgs.genericErrorText}"/></h1>
+			</h:form>
+		</div><!-- content --> 
+	</div><!-- box -->
+	
+</body>
+</html>

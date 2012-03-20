@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:lc="http://java.sun.com/jsf/composite/lmacommon"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces">
+	
+<h:head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title><ui:insert name="title">#{registerMsgs.pageTitle}</ui:insert></title>
+	<link href="#{request.contextPath}/css/login.css" media="screen" rel="stylesheet" type="text/css" />
+</h:head>
+<body>
+	<div id="logo"></div>
+	<f:loadBundle basename="messages.registerBundle" var="registerMsgs" />
+	<f:loadBundle basename="messages.overriddenMessages" var="overMsgs" />
+	<div id="box" class="rounded_box dark_blue centered_box shadowed">
+		<lc:messages globalOnly="true" />
+		<div id="box_content">
+			<h:form id="formRegister" prependId="false">
+				<h:panelGrid columns="1">
+					<h2 class="header_box">#{registerMsgs.registerFreeTitle}</h2>
+					<h:outputLabel value="#{registerMsgs.nameLabel}" for="Name"/>
+					<h:inputText id="Name" class="input_text" value="#{registerBean.name}" required="true" />
+					<h:message for="Name" errorClass="field_validation_error"/>
+					<h:outputLabel value="#{registerMsgs.emailLabel}" for="Email"/>
+					<h:inputText id="Email" class="input_text" value="#{registerBean.email}" required="true" />
+					<h:message for="Email" errorClass="field_validation_error"/>
+					<h:outputLabel value="#{registerMsgs.passwordLabel}" for="Password"/>
+					<h:inputSecret id="Password" class="input_text" value="#{registerBean.password}" required="true" />
+					<h:message for="Password" errorClass="field_validation_error"/>
+					<h:outputLabel value="#{registerMsgs.passwordConfirmLabel}" for="ConfirmPass"/>
+					<h:inputSecret id="ConfirmPass" class="input_text" value="#{registerBean.passwordConfirmation}" 
+								 validator="#{registerBean.validateConfirmPassword}" required="true" />
+					<h:message for="ConfirmPass" errorClass="field_validation_error"/>
+					
+					<h:outputLabel value="#{registerMsgs.sendNotification}" for="notification"/>
+					<h:selectBooleanCheckbox id="notification"
+					  value="#{registerBean.notify}" >
+					</h:selectBooleanCheckbox>
+					<h:message for="notification" errorClass="field_validation_error"/>
+					
+					
+					<h:outputLabel value="#{registerMsgs.languageLabel}" for="language"/>
+					<h:selectOneMenu id="language"  value="#{registerBean.language}" styleClass="input_text" required="true" >
+					   <f:selectItems value="#{registerBean.languages}" var="language" itemDescription="#{language}" 
+					   			itemLabel="#{language}" itemValue="#{language}" />
+					</h:selectOneMenu>
+					<h:message for="language" errorClass="field_validation_error"/>	
+					
+					<h:outputLabel value="#{registerMsgs.timezoneLabel}" for="Timezone"/>
+					<h:selectOneMenu id="Timezone"  value="#{registerBean.timezone}" styleClass="input_text" required="true">
+					   <f:selectItems value="#{registerBean.timezones}"/>
+					</h:selectOneMenu>
+					<h:message for="Timezone" errorClass="field_validation_error"/>	
+					<br />
+					<br />
+					<br />
+				</h:panelGrid>
+				<h:commandButton value="#{registerMsgs.registerButton}" class="button_blue" action="#{registerBean.register}"/>
+				&nbsp;
+				<pretty:link mappingId="login">#{registerMsgs.cancel}</pretty:link>
+				
+			</h:form>
+		</div><!-- content --> 
+	</div><!-- box -->
+	
+</body>
+</html>

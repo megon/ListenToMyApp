@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:prime="http://primefaces.prime.com.tr/ui"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces">
+	
+	<ui:composition>
+		<f:loadBundle basename="messages.projectBundle" var="projectMsgs" />
+		
+		<div id="sidebar_menu" class="rounded_box shadowed">
+			<div id="sidebar_menu_title" class="head_rounded">
+				<span class="box_title">
+					${projectBean.currentProject.name}
+				</span>
+			</div>
+			
+			<div id="sidebar_menu_content">
+				<ul class="sidebar_menu">
+					<li>
+						<pretty:link mappingId="projectEvents">
+							<f:param value="${projectBean.currentProject.id}" />
+							<f:param name="eventStatus" value="open"/>
+							<span class="left"><h:outputText value="#{projectMsgs.openedEvents}" /></span>
+							<div class="right"><span class="rounded" title="#{projectMsgs.openedEvents}">${projectBean.currentProject.cntOpenedEvents}</span></div>										
+						</pretty:link>
+					</li>
+					<li>
+						<pretty:link mappingId="projectEvents">
+							<f:param value="${projectBean.currentProject.id}" />
+							<f:param name="eventStatus" value="closed"/>
+							<span class="left"><h:outputText value="#{projectMsgs.closedEvents}" /></span>
+							<div class="right"><span class="rounded" title="#{projectMsgs.closedEvents}">${projectBean.currentProject.cntClosedEvents}</span></div>										
+						</pretty:link>
+					</li>
+				</ul>
+				
+<!-- 				
+				<pretty:link mappingId="editProject" styleClass="small button blue">
+					<f:param value="#{projectBean.currentProject.id}" />
+					<span>#{projectMsgs.editProject}</span>
+				</pretty:link>
+ -->				
+			</div>
+		</div>
+		
+	</ui:composition>
+</html>

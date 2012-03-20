@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces"
+	xmlns:lc="http://java.sun.com/jsf/composite/lmacommon">
+
+	<ui:composition template="layout/layout.xhtml">
+		<ui:param name="title" value="#{eventMsgs.pageTitle}" />
+
+
+
+		<ui:define name="content">
+				<f:loadBundle basename="messages.eventBundle" var="eventMsgs" />
+				<f:loadBundle basename="messages.overriddenMessages" var="overMsgs" />
+				<div id="centered_container">
+					<div id="centered_content" class="rounded_box shadowed">
+						<div class="head_rounded">
+							<span class="left box_title">
+								#{eventMsgs.viewingEvent} ${editEventBean.event.id}
+							</span>
+						</div>
+						<div id="content_properly">
+					
+							<h:form id="formEditEvent" prependId="false">
+								<table id="eventViewTable">
+									<tr>
+										<th><h:outputLabel value="#{eventMsgs.environment}"/></th>
+										<td><h:outputText value="#{editEventBean.event.environment}"/></td>
+									</tr>
+									<tr>
+										<th><h:outputLabel value="#{eventMsgs.fileName}"/></th>
+										<td><h:outputText value="#{editEventBean.event.fileName}" rendered="#{editEventBean.event.fileName} != null"/></td>
+									</tr>
+									<tr>
+										<th><h:outputLabel value="#{eventMsgs.category}"/></th>
+										<td><h:outputText value="#{editEventBean.event.category}"/></td>
+									</tr>
+									<tr>
+										<th><h:outputLabel value="#{eventMsgs.message}"/></th>
+										<td><h:outputText value="#{editEventBean.event.message}"/></td>
+									</tr>
+									<tr>
+										<th><h:outputLabel value="#{eventMsgs.date}"/></th>
+										<td>
+											<h:outputText value="#{editEventBean.event.eventDate}" >
+												<f:convertDateTime dateStyle="short" type="both" timeZone="#{loggedInUserBean.user.idTimeZone}"/>
+											</h:outputText>
+										</td>
+									</tr>
+									<tr>
+										<th><h:outputLabel value="#{eventMsgs.className}"/></th>
+										<td><h:outputText value="#{editEventBean.event.className}"/></td>
+									</tr>
+									<tr>
+										<th><h:outputLabel value="#{eventMsgs.fileName}"/></th>
+										<td><h:outputText value="#{editEventBean.event.fileName}"/></td>
+									</tr>
+									<tr>
+										<th><h:outputLabel value="#{eventMsgs.lineNumber}"/></th>
+										<td><h:outputText value="#{editEventBean.event.lineNumber}"/></td>
+									</tr>
+									<tr>
+										<th><h:outputLabel value="#{eventMsgs.methodName}"/></th>
+										<td><h:outputText value="#{editEventBean.event.methodName}"/></td>
+									</tr>
+									<tr>
+										<th><h:outputLabel value="#{eventMsgs.trace}" rendered="#{editEventBean.event.trace != 'null'}" /></th>
+										<td><h:outputText value="#{editEventBean.event.trace}" rendered="#{editEventBean.event.trace != 'null'}"/></td>
+									</tr>
+									<tr>
+										<th><h:outputLabel value="#{eventMsgs.status}"/></th>
+										<td>
+											<h:outputText value="#{eventMsgs.open}" rendered="#{editEventBean.event.status.value eq '1'}" />
+											<h:outputText value="#{eventMsgs.closed}" rendered="#{editEventBean.event.status.value eq '2'}" />
+										</td>
+									</tr>
+								</table>
+								
+								<div class="footer_rounded">
+									<h:panelGroup id="action_buttons" rendered="#{editEventBean.event.status.value eq '1'}">
+										<h:commandButton value="#{eventMsgs.close}" styleClass="small button blue"  action="#{editEventBean.close}"/>
+										&nbsp;
+										<pretty:link mappingId="home">
+											<span class="rounded_cancel">#{eventMsgs.cancel}</span>
+										</pretty:link>
+									</h:panelGroup>
+									
+									<h:panelGrid columns="1" rendered="#{editEventBean.event.status.value eq '2'}">
+										<pretty:link mappingId="home" styleClass="small button blue">
+											<h:outputText value="#{overMsgs.ok}"/>
+										</pretty:link>
+									</h:panelGrid>
+								</div>
+								
+							</h:form>
+						
+						</div><!-- content_properly -->
+						
+					</div><!-- content  -->
+				</div><!-- container  -->
+		</ui:define>
+				
+	</ui:composition>
+</html>

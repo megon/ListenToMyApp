@@ -1,0 +1,18 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+	<composite:attribute name="globalOnly" required="false" type="Boolean" />
+</composite:interface>
+
+<composite:implementation>
+	<h:outputStylesheet name="lmacommon/lmacommon.css" />
+	<div id="notification_messages">
+		<h:messages globalOnly="#{cc.attrs.globalOnly}" errorClass="LMAmessagesError"/>
+	</div>
+</composite:implementation>
+
+</html>

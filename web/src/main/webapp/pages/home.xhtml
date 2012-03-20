@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces"
+	xmlns:prime="http://primefaces.prime.com.tr/ui"
+	xmlns:lc="http://java.sun.com/jsf/composite/lmacommon">
+
+	
+	
+	<ui:composition template="layout/layout.xhtml">
+		<ui:param name="title" value="Home" />
+
+		<ui:define name="sidebar">
+			<ui:include src="context_sidebar_home.xhtml" />
+		</ui:define>
+
+		<ui:define name="content">
+				<f:loadBundle basename="messages.homeBundle" var="homeMsgs" />
+				<div id="container">				
+					<div id="content" class="rounded_box shadowed">
+						<lc:eventList events="#{homeBean.events}" title="#{homeMsgs.lastEvents}"/>
+						
+						<div class="footer_rounded">
+							<!-- content for footer goes here -->
+						</div>
+					
+					</div><!-- content  -->
+				</div><!-- container  -->
+				<!--Start Kampyle Feedback Form Button-->
+				
+				<div><a href='http://www.kampyle.com/feedback_form/ff-feedback-form.php?site_code=1062469&amp;lang=pt-br&amp;page_id=218'  target='kampyleWindow' id='kampylink' class='k_float k_bottom k_right' onclick="javascript:k_button.open_ff('site_code=1062469&amp;lang=pt-br&amp;form_id=43585');return false;"><img src="http://cf.kampyle.com/buttons/en/green/en-green-band-low-right.gif" alt="Feedback Form" border="0"/></a></div>
+				
+				<script src="http://cf.kampyle.com/k_button.js" type="text/javascript"></script>
+				
+				<!--End Kampyle Feedback Form Button-->
+				
+		</ui:define>
+	</ui:composition>
+	
+</html>

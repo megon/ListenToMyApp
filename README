@@ -1,0 +1,24 @@
+Se você possui aplicações web sabe como é importante ter um monitoramento constante.
+ListenToMyApp centraliza ocorrência de eventos em suas aplicações, sejam elas erro, informação ou warning através de uma interface simples e limpa.
+Site da aplicação em: http://www.listentomyapp.com
+
+Utiliza:
+- JAVA 6;
+- JEE6;
+- JPA2.0;
+- Spring Framework 3.0;
+- Apache Maven 2;
+- git;
+- REST Webservices (JBoss RESTEasy 1.2);
+- JBoss 5.1 Application Server;
+- Apache Maven;
+- MySQL;
+- Test Driven Development;
+- Domain Driven Design.
+
+Projeto desenvolvido por Megon Internet Services Ltda. (http://www.megon.com.br)
+
+Contatos:
+Daniel Fukuda: daniel.fukuda@megon.com.br
+Marcelo Menezes: marcelo.menezes@megon.com.br
+Marco Rojo: marco.rojo@megon.com.br

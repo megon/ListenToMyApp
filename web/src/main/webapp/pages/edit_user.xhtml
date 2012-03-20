@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces"
+	xmlns:lc="http://java.sun.com/jsf/composite/lmacommon">
+
+	<ui:composition template="layout/layout.xhtml">
+		<ui:param name="title" value="#{userMsgs.pageTitle}" />
+
+
+
+		<ui:define name="content">
+				<f:loadBundle basename="messages.userBundle" var="userMsgs" />
+				<f:loadBundle basename="messages.overriddenMessages" var="overMsgs" />
+				<div id="centered_container">
+					<div id="centered_content" class="rounded_box shadowed">
+						<div class="head_rounded">
+							<span class="left box_title">
+								#{userMsgs.editingUser} ${loggedInUserBean.user.name}
+							</span>
+						</div>
+						<div id="content_properly">
+					
+							<h:form id="formEditUser" prependId="false">
+								<h:panelGrid columns="4" id="tableFields">
+									<h:outputLabel value="#{userMsgs.name}" for="name"/>
+									<h:inputText id="name" class="input_text" value="#{editUserBean.user.name}" required="true" />
+									<h:message for="name" errorClass="field_validation_error"/>
+									<br />
+									<h:outputLabel value="#{userMsgs.sendNotification}" for="notification"/>
+									<h:selectBooleanCheckbox id="notification"
+									  value="#{editUserBean.user.notify}" >
+									</h:selectBooleanCheckbox>
+									<h:message for="notification" errorClass="field_validation_error"/>
+									<br/>
+									
+									<h:outputLabel value="#{userMsgs.language}" for="language"/>
+									<h:selectOneMenu id="language"  value="#{editUserBean.user.language}" styleClass="input_text" required="true" >
+									   <f:selectItems value="#{editUserBean.languages}" var="language" itemDescription="#{language}" 
+									   			itemLabel="#{language}" itemValue="#{language}" />
+									</h:selectOneMenu>
+									<h:message for="language" errorClass="field_validation_error"/>	
+									<br/>
+									<h:outputLabel value="#{userMsgs.timezone}" for="language"/>
+									<h:selectOneMenu id="timezone"  value="#{editUserBean.user.idTimeZone}" styleClass="input_text" required="true" >
+										<f:selectItems value="#{editUserBean.timezones}"/>
+									</h:selectOneMenu>
+									<h:message for="timezone" errorClass="field_validation_error"/>	
+									
+									
+								</h:panelGrid>
+								<div class="footer_rounded">
+									<h:panelGroup id="action_buttons" rendered="#{editUserBean.updated == false}">
+										<h:commandButton value="#{userMsgs.save}" styleClass="small button blue"  action="#{editUserBean.alter}"/>
+										&nbsp;
+										<pretty:link mappingId="home">
+											<span class="rounded_cancel">#{userMsgs.cancel}</span>
+										</pretty:link>
+									</h:panelGroup>
+	
+									<h:panelGrid columns="1" rendered="#{editUserBean.updated == true}">
+										<pretty:link mappingId="home" styleClass="small button blue">
+											<h:outputText value="#{overMsgs.ok}"/>
+										</pretty:link>
+									</h:panelGrid>
+								</div>
+								
+								
+							</h:form>
+						
+						</div><!-- content_properly -->
+
+						
+					</div><!-- content  -->
+				</div><!-- container  -->
+		</ui:define>
+				
+	</ui:composition>
+</html>

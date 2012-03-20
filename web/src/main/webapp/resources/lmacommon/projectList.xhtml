@@ -1,0 +1,71 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:prime="http://primefaces.prime.com.tr/ui">
+
+<composite:interface>
+	<composite:attribute name="projects" required="true" type="Object" />
+	<composite:attribute name="title" required="false" type="String" />
+	<composite:attribute name="showTitle" required="false" type="Boolean" />
+	
+</composite:interface>
+
+<composite:implementation>
+	<f:loadBundle basename="messages.projectBundle" var="projectMsgs" />
+	
+	<h:outputStylesheet name="lmacommon/lmacommon.css"/>
+	
+	<div class="head_rounded">
+		<span class="left box_title">
+			<h:outputText value="#{cc.attrs.title}"/>
+		</span>
+		<div class="right box_title">
+			<div id="yui-dt0-paginator1"/>
+		</div>
+	</div>
+
+	 <h:form>
+		 <prime:dataTable id="projects" var="project" value="#{cc.attrs.projects}" styleClass="content_table"
+		 	paginator="true" rows="10" rowClasses="odd, even" 
+		 	paginatorTemplate="{PreviousPageLink} {CurrentPageReport} {NextPageLink}"
+		 	previousPageLinkLabel="&#171; #{projectMsgs.previous}" nextPageLinkLabel="#{projectMsgs.next} &#187;">
+			<prime:column align="center">
+				<f:facet name="header">
+					<h:outputText value="#{projectMsgs.projectName}" />
+				</f:facet>
+				<pretty:link mappingId="editProject">
+					<f:param value="#{project.id}" />
+					<h:outputText value="#{project.name}" />
+				</pretty:link>
+			</prime:column>
+			<prime:column align="center">
+				<f:facet name="header">
+					<h:outputText value="#{projectMsgs.currentProjectKey}" />
+				</f:facet>	
+				<h:outputText value="#{project.key}" />
+			</prime:column>
+			<prime:column align="center">
+				<f:facet name="header">
+					<h:outputText value="#{projectMsgs.totalEvents}" />
+				</f:facet>
+				<h:outputText value="#{project.cntTotalEvents}"/>
+				<center>
+				</center>	
+			</prime:column>
+			<prime:column align="center">
+				<f:facet name="header">
+					<h:outputText value="#{projectMsgs.delete}" />
+				</f:facet>
+				<h:commandLink action="#{deleteProjectBean.delete}" onclick="return confirm('#{projectMsgs.confirm}')" >
+					<h:graphicImage value="/images/delete.png" />
+					<f:param name="id" value="#{project.id}"/>
+				</h:commandLink>
+			</prime:column>
+		 </prime:dataTable>
+	</h:form>  
+</composite:implementation>
+
+</html>

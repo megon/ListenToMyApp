@@ -1,0 +1,145 @@
+/*-------------------------------------------------
+MISC
+-------------------------------------------------*/
+
+img{ border:0; }
+
+html, body{
+	color: black;
+	font-family: verdana, helvetica, arial, sans-serif;
+	font-size:12px;
+	margin: 0;
+	padding: 0;
+	width:100%;
+	height:100%;
+}
+
+h1{	color:#487dac;	font-weight:bold;		font-family:Verdana;	font-size:14px; background:#e7ecef; margin:0px; padding:0px;}
+
+a	{color:#1d74c4; text-decoration:none; }
+a:hover	{color:#1d74c4;}
+
+a.cancel{color:#FF0000;font-family:verdana;}
+
+.odd  	{ background-color:#F1F5FA; }
+.even 	{ background-color:#FFF; }
+.middle { vertical-align:middle; }
+.left 	{ float:left; }
+.right 	{ float:right; }
+.clear 	{ clear:both; }
+.center { text-align:center !important;}
+
+/* text */
+.dark_blue{ color:#2C343A; }
+span.debit{ color:#c70909; }
+span.credit{ color:#427E09; }
+span.total_credit{ color:#FFF;background:#82C6FA;padding:3px; }
+span.total_debit{ color:#FFF;background:#EB3232;padding:3px; }
+
+/*-------------------------------------------------
+LAYOUT CONTAINERS
+-------------------------------------------------*/
+#wrapper {
+	min-height: 100%;
+	margin: 0; padding:0;
+}
+* html #wrapper { height: 100%;	}
+
+#top_bar, #bottom_bar, #header, #menu, #errorExplanation, #params_content, .flash, .pagination_box, .button, form { display:none; }
+#container { width: 100%;	}
+#content { padding:17px; height:100%; }
+#sidebar { display:none;}
+
+.page_header { background:#e7ecef none repeat scroll 0 0; margin:0 0 15px; padding:13px 30px 13px 24px; }
+
+
+/*-------------------------------------------------
+ENTRIES GRID
+-------------------------------------------------*/
+#grid_container{ display:block; width:100%;	float:left; }
+
+.grid{border-collapse: collapse; width:100%;}
+.grid img{ vertical-align:middle; }
+.grid td{ padding:0 4px 0 4px; height:25px;}
+.grid tr.credit:hover{background-color:#f0ffe6;}
+.grid tr.debit:hover{background-color:#fff2ec;}
+.grid tr.debit .value {color:#c70909;}
+.grid tr.selected {background:#FFF1CE;}
+
+.grid tr.header{
+	height:29px;
+	background:url(/images/layout/grid_header.jpg);
+  cursor: pointer;
+}
+
+.grid tr.header th{
+	border:1px solid #C3D4E8;
+	border-top:none;
+	color:#5689b8;
+	padding:0 10px 0 10px;
+	font-size:10px;
+	font-weight:normal;
+	text-align:left;
+}
+
+.grid tr.header th.day{
+	color:#233b52;
+	text-align:center;
+	font-size:10px;
+	font-weight:bold;
+	width:7%;
+}
+
+.grid tr.header th.transaction{	width:30%; }
+.grid tr.header th.category{ width:15%; }
+.grid tr.header th.value{ width:15%; }
+.grid tr.header th.total{ width:20%; text-align:right; }
+
+/*-------------------------------------------------
+BALANCE GRID
+-------------------------------------------------*/
+.balance_grid{ border-collapse: collapse; width:100%;	}
+.balance_grid th{ text-align:right;font-size:10px; padding-right:10px; }
+.balance_grid td.credit { color:#427E09; }
+.balance_grid td.debit { color:#c70909; }
+
+/*-------------------------------------------------
+REPORT
+-------------------------------------------------*/
+
+#params_content{
+	display:none;
+	width:100%;
+	margin:0 0 20px 0;
+	padding:0;
+}
+
+.report h4 		{ color:#000; background:#FFD577; padding:5px; font-weight:bold; margin: 0; text-align:center;}
+.report .odd 	{ background:#f2f5f8; }
+.report .even { background:#FFFFFF; }
+
+.report_grid	{
+	clear:both;
+	font-size:95%;
+	width:100%;
+	border-collapse: collapse;
+	color:#000;
+	margin-bottom:20px;
+}
+
+.report_grid td{
+	height:24px;
+	padding:4px;
+	font-size:1em;
+}
+
+.report_grid thead th{
+	height:27px;
+	font-weight:bold;
+	font-size:1em;
+	text-align:left;
+	padding:0 5px 0 5px;
+	border-bottom:1px solid #DDDDDD;
+}
+
+.report_grid tr.debit .value {color:#c70909;}

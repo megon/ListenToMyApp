@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces">
+	<ui:composition>
+			<f:loadBundle basename="messages.contextSideBarHomeBundle" var="contextSideBarMsgs" />
+	
+				<div id="sidebar_menu" class="rounded_box shadowed">
+					<div id="sidebar_menu_title" class="head_rounded">
+						<span class="box_title">
+							<h:outputText value="#{contextSideBarMsgs.projects}" />
+						</span>
+					</div>
+					
+					<div id="sidebar_menu_content">
+						<ul class="sidebar_menu">
+							<ui:repeat var="project" value="#{loggedInUserBean.projects}">
+								<li>
+									<pretty:link mappingId="projectEvents">
+										<f:param value="#{project.id}" />
+										<span class="left">#{project.nameFirstCharacters}</span>
+										<div class="right"><span class="rounded" title="#{contextSideBarMsgs.openedEvents}">#{project.cntOpenedEvents}</span></div>										
+									</pretty:link>
+								</li>
+							</ui:repeat>
+						</ul>
+					</div>
+				</div>
+	</ui:composition>
+</html>

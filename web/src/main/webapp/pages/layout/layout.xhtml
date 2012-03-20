@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:lc="http://java.sun.com/jsf/composite/listen-commons"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces"
+	xmlns:prime="http://primefaces.prime.com.tr/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	
+<h:head>
+	<!--Start Kampyle Exit-Popup Code--> 
+	<script type="text/javascript">
+	var k_push_vars = {
+	    "display_after": 0,
+		"view_percentage": 100,
+		"popup_font_color": "#000000",
+		"popup_background": "#ffffff",
+		"popup_separator": "#FFFFFF",
+		"header": "Sua opinião é importante para nós",
+		"question": "Você gostaria de participar de uma rápida pesquisa (1 minuto) sobre nosso site?",
+		"footer": "Obrigado por nos ajudar a melhorar o nosso site.",
+		"remind": "",
+		"remind_font_color": "#3882C3",	
+		"yes": "Sim",
+		"no": "Não",
+		"text_direction": "ltr",
+		"images_dir": "http://cf.kampyle.com/",
+		"yes_background": "#76AC78",
+		"no_background": "#8D9B86",
+		"site_code": 1062469
+	}
+	</script>
+	<!--End Kampyle Exit-Popup Code-->
+	<!-- Start Kampyle Css -->
+	<link rel="stylesheet" type="text/css" media="screen" href="http://cf.kampyle.com/k_button.css" />
+	<!-- End Kampyle Css -->
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<meta http-equiv="Cache-Control" content="must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="Mon, 1 Aug 1999 10:00:00 GMT" />
+	<title><ui:insert name="title">${title}</ui:insert></title>
+	<link href="#{request.contextPath}/css/application.css" media="screen" rel="stylesheet" type="text/css" />
+</h:head>
+
+<body>
+	<f:view locale="#{loggedInUserBean.locale}" >
+	<f:loadBundle basename="messages.homeBundle" var="homeMsgs" />
+	
+		<div id="wrapper">
+		
+			<div id="header">
+				<div id="header_bar">
+					<span class="company left">
+						<pretty:link mappingId="home">
+							<img src="#{request.contextPath}/images/logo-small.png" width="196" height="47"
+								alt="logo" style="position: absolute; left:0; top:0;" />
+						</pretty:link>
+					</span>
+					<span class="right info">
+						<span class="info">
+							<h:outputText value="#{loggedInUserBean.user.name}" />
+						</span>
+						|
+						<span>
+							<pretty:link mappingId="logout">
+								#{homeMsgs.logout}
+							</pretty:link>
+						</span>
+					</span>
+				</div>
+		
+				<div id="menu">
+					
+					<ul class="left">
+						<h:panelGroup columns="1" rendered="#{loggedInUserBean.user.navigation eq 'events'}">
+							<li class="current">
+								<pretty:link mappingId="events">
+									<span>#{homeMsgs.events}</span>
+								</pretty:link>
+							</li>
+						</h:panelGroup>
+						<h:panelGroup columns="1" rendered="#{loggedInUserBean.user.navigation != 'events'}">
+							<li>
+								<pretty:link mappingId="events">
+									<span>#{homeMsgs.events}</span>
+								</pretty:link>
+							</li>
+						</h:panelGroup>
+						
+						<h:panelGroup columns="1" rendered="#{loggedInUserBean.user.navigation eq 'projects'}">
+							<li class="current">
+								<pretty:link mappingId="projects">
+									
+									<span>#{homeMsgs.projects}</span>
+								</pretty:link>
+							</li>
+						</h:panelGroup>
+						
+						<h:panelGroup columns="1" rendered="#{loggedInUserBean.user.navigation != 'projects'}">
+							<li>
+								<pretty:link mappingId="projects">
+									
+									<span>#{homeMsgs.projects}</span>
+								</pretty:link>
+							</li>
+						</h:panelGroup>
+					</ul>
+					<ul class="right">
+						<h:panelGroup columns="1" rendered="#{loggedInUserBean.user.navigation eq 'myInformation'}">
+							<li class="current">
+								<pretty:link mappingId="editUser">
+									<span>#{homeMsgs.user}</span>
+								</pretty:link>
+							</li>
+						</h:panelGroup>
+							
+						<h:panelGroup columns="1" rendered="#{loggedInUserBean.user.navigation != 'myInformation'}">
+							<li>
+								<pretty:link mappingId="editUser">
+									<span>#{homeMsgs.user}</span>
+								</pretty:link>
+							</li>
+						</h:panelGroup>
+						
+						
+						<h:panelGroup columns="1" rendered="#{loggedInUserBean.user.navigation eq 'myAccount'}">
+							<li class="current">
+								<pretty:link mappingId="editAccount">
+									<span>#{homeMsgs.account}</span>
+								</pretty:link>
+							</li>
+						</h:panelGroup>
+							
+						<h:panelGroup columns="1" rendered="#{loggedInUserBean.user.navigation != 'myAccount'}">
+							<li>
+								<pretty:link mappingId="editAccount">
+									<span>#{homeMsgs.account}</span>
+								</pretty:link>
+							</li>
+						</h:panelGroup>
+						
+						
+					</ul>
+				</div><!-- menu -->
+			</div><!-- header -->
+		
+			<div id="content_wrapper">
+				<div id="notification_area">
+					<prime:messages globalOnly="true"/>
+				</div>
+				<div id="sidebar">
+					<ui:insert name="sidebar" />
+					<c:if test="#{homeBean.showSideTip}" >
+						<c:if test="#{loggedInUserBean.user.accountId eq 1}">
+							<div id="upgrade" class="tip">
+								<h2><h:outputText value="#{homeMsgs.freePlanTitle}" /></h2>
+								<p>
+									<h:outputText value="#{homeMsgs.freePlanText}" />
+								</p>
+							</div>
+						</c:if>
+					</c:if>
+				</div><!-- sidebar -->
+			
+				<ui:insert name="content">
+						<ui:include src="content.xhtml" />
+				</ui:insert>
+			</div><!-- content_wrapper  -->
+	
+		</div><!-- wrapper -->
+	</f:view>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+	version="2.0">
+	<!--
+		<managed-bean> <managed-bean-name>myBean</managed-bean-name>
+		<managed-bean-class>com.listenMyApp.ui.MyBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope> </managed-bean>
+	-->
+	<lifecycle>
+		<phase-listener>com.listenMyApp.jsf.AuthorizationListener</phase-listener>
+	</lifecycle>
+
+	<!-- Application Config -->
+	<application>
+		<locale-config>
+			<default-locale>en</default-locale>
+			<supported-locale>pt</supported-locale>
+		</locale-config>
+		<message-bundle>messages.overriddenMessages</message-bundle>
+
+
+		<!-- Spring -->
+		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+	</application>
+
+
+</faces-config>
+

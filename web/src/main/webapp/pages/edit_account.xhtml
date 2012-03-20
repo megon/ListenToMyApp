@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces"
+	xmlns:lc="http://java.sun.com/jsf/composite/lmacommon">
+
+	<ui:composition template="layout/layout.xhtml">
+		<ui:param name="title" value="#{userMsgs.pageTitle}" />
+
+
+
+		<ui:define name="content">
+				<f:loadBundle basename="messages.accountBundle" var="accountMsgs" />
+				<f:loadBundle basename="messages.overriddenMessages" var="overMsgs" />
+				<div id="centered_container">
+					<div id="centered_content" class="rounded_box shadowed">
+						<div class="head_rounded">
+							<span class="left box_title">
+								#{accountMsgs.editingAccount}
+							</span>
+						</div>
+						<div id="content_properly">					
+								<h2 class="center"><h:outputText value="#{accountMsgs.accountTextOne}" /></h2>
+								<p class="center"><h:outputText value="#{accountMsgs.accountTextTwo}" /></p>						
+						</div><!-- content_properly -->
+						<div class="footer_rounded">
+							<!-- content for footer goes here -->
+						</div>
+						
+					</div><!-- content  -->
+				</div><!-- container  -->
+		</ui:define>
+				
+	</ui:composition>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:lc="http://java.sun.com/jsf/composite/lmacommon">
+
+	<ui:composition template="layout/layout.xhtml">
+		<ui:param name="title" value="Project" />
+
+
+
+		<ui:define name="content">
+				<f:loadBundle basename="messages.projectBundle" var="projectMsgs" />
+				<f:loadBundle basename="messages.overriddenMessages" var="overMsgs" />
+				<div id="centered_container">
+					<div id="centered_content" class="rounded_box shadowed">
+						<div class="head_rounded">
+							<span class="left box_title">
+								#{projectMsgs.editingProject} ${projectBean.currentProject.name}
+							</span>
+						</div>
+						<div id="content_properly">						
+					
+							<h:form id="formEditProject" prependId="false">
+								<h:panelGrid columns="4" id="tableFields">
+									<h:outputLabel value="#{projectMsgs.projectName}" for="Name"/>
+									<h:inputText id="Name" class="input_text" value="#{editProjectBean.currentProject.name}" required="true" maxlength="20" size="30"/>
+									<h:message for="Name" errorClass="field_validation_error"/>
+									<br />
+									<h:outputLabel value="#{projectMsgs.currentProjectKey}" for="projectKey"/>
+									<h:inputText id="projectKey" style="border:none;" value="#{editProjectBean.currentProject.key}" size="50" readonly="true"/>
+									<h:inputHidden id="hiddenProjectKey" value="#{editProjectBean.currentProject.key}"/>
+									<h:commandButton value="#{projectMsgs.regenerateKey}" class="rounded_submit" action="#{editProjectBean.regenerateKey}" />								
+								</h:panelGrid>
+								<div class="footer_rounded">
+									<h:panelGroup id="action_buttons">
+										<h:commandButton value="#{projectMsgs.save}" styleClass="small button blue"  action="#{editProjectBean.updateProject}"/>
+										&nbsp;
+										<pretty:link mappingId="projects">
+											<span class="rounded_cancel">#{projectMsgs.cancel}</span>
+										</pretty:link>
+									</h:panelGroup>
+								</div>
+							</h:form>
+							
+						</div>	
+					</div><!-- centered_content  -->
+				</div><!-- centered_container  -->
+		</ui:define>
+				
+	</ui:composition>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces"
+	xmlns:prime="http://primefaces.prime.com.tr/ui"
+	xmlns:lc="http://java.sun.com/jsf/composite/lmacommon">
+	
+	<ui:composition template="layout/layout.xhtml">
+		<ui:param name="title" value="Project" />
+		<ui:define name="content">
+				<f:loadBundle basename="messages.projectBundle" var="projectMsgs" />
+				<f:loadBundle basename="messages.overriddenMessages" var="overMsgs" />
+				<div id="centered_container">
+					<div id="centered_content" class="rounded_box shadowed">
+							
+						<div class="head_rounded">
+							<span class="left box_title">
+								#{projectMsgs.createProject}
+							</span>
+						</div>
+						<div id="content_properly">
+						
+							<h:form id="formEditProject" prependId="false">
+								<h:panelGrid columns="4" id="tableFields">
+									<h:outputLabel value="#{projectMsgs.projectName}" for="Name"/>
+									<h:inputText id="Name" class="input_text" value="#{createProjectBean.project.name}" required="true" rendered="#{createProjectBean.project.key == null}" size="30" maxlength="20"/>
+									<h:outputText value="#{createProjectBean.project.name}" rendered="#{createProjectBean.project.key != null}"/>
+									<h:message for="Name" errorClass="field_validation_error"/>
+									<br />
+									<h:outputLabel value="#{projectMsgs.currentProjectKey}" rendered="#{createProjectBean.project.key != null}"/>
+									<h:outputText value="#{createProjectBean.project.key}" rendered="#{createProjectBean.project.key != null}"/>
+								</h:panelGrid>
+								<h:panelGrid rendered="#{createProjectBean.project.key != null}" style="width:100%;" styleClass="padding_left">
+									<hr/>
+									<h2 style="color:green;">#{projectMsgs.nextStep}</h2>
+									   	<f:verbatim>
+									   		<p>
+											   <a href="http://wiki.listentomyapp.com/?page_id=89" target="_blank">
+											   #{projectMsgs.clickHere}
+											   </a>#{projectMsgs.nextStepTip}
+										   </p>
+									   </f:verbatim>
+								</h:panelGrid>
+								<div class="footer_rounded">
+									<h:panelGroup id="action_buttons" rendered="#{createProjectBean.project.key == null}">
+										<h:commandButton value="#{projectMsgs.save}" styleClass="small button blue"  action="#{createProjectBean.create}"/>
+										&nbsp;
+										<pretty:link mappingId="projects">
+											<span class="rounded_cancel">#{projectMsgs.cancel}</span>
+										</pretty:link>
+									</h:panelGroup>
+
+									
+									<h:panelGroup rendered="#{createProjectBean.project.key != null}">
+										
+										<pretty:link mappingId="projects" styleClass="small button blue">
+											<h:outputText value="#{overMsgs.ok}"/>
+										</pretty:link>
+									</h:panelGroup>
+								</div>
+
+								
+							</h:form>
+							
+						</div><!-- content_properly -->
+						
+					</div><!-- content  -->
+				</div><!-- container  -->
+		</ui:define>
+				
+	</ui:composition>
+</html>

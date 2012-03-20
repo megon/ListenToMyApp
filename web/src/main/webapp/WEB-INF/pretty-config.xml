@@ -1,0 +1,122 @@
+<pretty-config xmlns="http://ocpsoft.com/prettyfaces/2.0.4" 
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+               xsi:schemaLocation="http://ocpsoft.com/prettyfaces/2.0.4
+                                   		http://ocpsoft.com/xml/ns/prettyfaces/ocpsoft-pretty-faces-2.0.4.xsd">
+
+	<url-mapping id="login">
+		<pattern value="/login" />
+		<view-id>/pages/login.jsf</view-id>
+	</url-mapping>
+	
+	<url-mapping id="logout">
+		<pattern value="/logout" />
+		<view-id>/pages/login.jsf</view-id>
+		<action>#{loginBean.doLogout}</action>
+	</url-mapping>
+	
+	<url-mapping id="home">
+		<pattern value="/home" />
+		<view-id>#{homeBean.getViewPath}</view-id>
+		<action>#{homeBean.load}</action>
+	</url-mapping>
+	
+	<url-mapping id="events">
+		<pattern value="/events" />
+		<view-id>#{homeBean.getViewPath}</view-id>
+		<action>#{homeBean.load}</action>
+	</url-mapping>
+	
+	<url-mapping id="projects">
+		<pattern value="/projects" />
+		<view-id> /pages/my_projects.jsf </view-id>
+		<action>#{myProjectsBean.load}</action>
+	</url-mapping>
+	
+	<url-mapping id="projectNotConfigured">
+		<pattern value="/projects" />
+		<view-id> /pages/my_projects.jsf </view-id>
+		<action>#{myProjectsBean.load}</action>
+	</url-mapping>
+
+	
+	<url-mapping id="projectEvents">
+		<pattern value="/projects/#{paramsBean.currentProjectID}/events" />
+		<query-param name="eventStatus">#{paramsBean.eventStatus}</query-param>
+		<view-id> /pages/project.jsf </view-id>
+		<action>#{projectBean.load}</action>
+	</url-mapping>
+	
+	<url-mapping id="editProject">
+		<pattern value="/projects/#{paramsBean.currentProjectID}/edit" />
+		<view-id> /pages/edit_project.jsf </view-id>
+		<action>#{editProjectBean.load}</action>
+	</url-mapping>
+	
+	<url-mapping id="editEvent">
+		<pattern value="/events/#{paramsBean.currentEventId}/edit" />
+		<view-id> /pages/edit_event.jsf </view-id>
+		<action>#{editEventBean.load}</action>
+	</url-mapping>
+	
+	
+	<url-mapping id="createProject">
+		<pattern value="/projects/new" />
+		<view-id> /pages/create_project.jsf </view-id>
+		<action>#{createProjectBean.load}</action>
+	</url-mapping>
+	
+	
+	<url-mapping id="editUser">
+		<pattern value="/user/edit" />
+		<view-id> /pages/edit_user.jsf </view-id>
+		<action>#{editUserBean.load}</action>
+	</url-mapping>
+
+
+	<url-mapping id="editAccount">
+		<pattern value="/account/edit" />
+		<view-id> /pages/edit_account.jsf </view-id>
+		<action>#{accountBean.load}</action>
+	</url-mapping>
+	
+	<!-- Registration Mappings -->
+	<url-mapping id="registerFree">
+		<pattern value="/register/free" />
+		<view-id> /pages/register_free.jsf </view-id>
+		<action>#{registerBean.load}</action>
+	</url-mapping>
+
+	<url-mapping id="confirmRegistration">
+		<pattern value="/confirmRegistration/#{paramsBean.userKey}" />
+		<view-id> /pages/login.jsf </view-id>
+		<action>#{registerBean.processUserRegistration}</action>
+	</url-mapping>
+	
+	<url-mapping id="forgotMyPassword">
+		<pattern value="/forgotMyPassword" />
+		<view-id> /pages/forgot_my_password.jsf </view-id>
+	</url-mapping>
+
+	<url-mapping id="forgotMyPasswordSent">
+		<pattern value="/forgotMyPasswordSent" />
+		<view-id> /pages/forgot_my_password_sent.jsf </view-id>
+	</url-mapping>
+
+	<url-mapping id="confirMyNewPassword">
+		<pattern value="/confirMyNewPassword/#{paramsBean.userKey}" />
+		<view-id> /pages/confirm_my_new_password.jsf </view-id>
+	</url-mapping>
+  
+     
+	<!-- Begin Exception Mappings -->
+	<url-mapping id="404">
+		<pattern value="/404" />
+		<view-id> /404.jsf </view-id>
+	</url-mapping>
+	<url-mapping id="error">
+		<pattern value="/error" />
+		<view-id> /error.jsf </view-id>
+	</url-mapping>
+	<!-- End Exception Mappings -->
+
+</pretty-config>

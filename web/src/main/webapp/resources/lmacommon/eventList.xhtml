@@ -1,0 +1,85 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:prime="http://primefaces.prime.com.tr/ui">
+
+<composite:interface>
+	<composite:attribute name="events" required="true" type="Object" />
+	<composite:attribute name="title" required="false" type="String" />
+	<composite:attribute name="showTitle" required="false" type="Boolean" />
+	
+</composite:interface>
+
+<composite:implementation>
+	<f:loadBundle basename="messages.eventBundle" var="eventMsgs" />
+	
+	<h:outputStylesheet name="lmacommon/lmacommon.css"/>
+	
+	
+	<div class="head_rounded">
+		<span class="left box_title">
+			<h:outputText value="#{cc.attrs.title}"/>
+		</span>
+		<div class="right box_title">
+			<div id="yui-dt0-paginator1"/>
+		</div>
+	</div>
+
+
+	
+	 <prime:dataTable id="lastEvents" var="event" value="#{cc.attrs.events}" styleClass="content_table"
+	 	paginator="true" rows="10" rowClasses="odd, even" 
+	 	paginatorTemplate="{PreviousPageLink} {CurrentPageReport} {NextPageLink}"
+	 	previousPageLinkLabel="&#171; #{eventMsgs.previous}" nextPageLinkLabel="#{eventMsgs.next} &#187;">  
+		<prime:column align="center">
+			<f:facet name="header">
+				<h:outputText value="#{eventMsgs.environment}" />
+			</f:facet>
+			<center>
+				<span class="#{event.environment}_tag">
+					<h:outputText value="#{event.environment}" title="Ambiente #{event.environment}"/>
+				</span>
+			</center>
+		</prime:column>
+		<prime:column align="center">
+			<f:facet name="header">
+				<h:outputText value="#{eventMsgs.category}" />
+			</f:facet>	
+			<h:outputText value="#{event.category}" />
+		</prime:column>
+		
+		<prime:column align="center">
+			<f:facet name="header">
+				<h:outputText value="#{eventMsgs.message}" />
+			</f:facet>	
+			<pretty:link mappingId="editEvent">
+				<f:param value="#{event.id}" />
+				<h:outputText value="#{event.message}" />
+			</pretty:link>
+		</prime:column>
+		<prime:column align="center">
+			<f:facet name="header">
+				<h:outputText value="#{eventMsgs.date}"/>
+			</f:facet>	
+			<h:outputText value="#{event.eventDate}" >
+				<f:convertDateTime dateStyle="short" type="both" timeZone="#{loggedInUserBean.user.idTimeZone}"/>
+			</h:outputText>
+		</prime:column>
+		<prime:column align="center">
+			<f:facet name="header">
+				<h:outputText value="#{eventMsgs.status}" />
+			</f:facet>
+			<center>
+				<span class="event_status">
+					<h:outputText value="#{eventMsgs.open}" rendered="#{event.status.value eq '1'}" />
+					<h:outputText value="#{eventMsgs.closed}" rendered="#{event.status.value eq '2'}" />
+				</span>
+			</center>	
+		</prime:column>
+	 </prime:dataTable>  
+</composite:implementation>
+
+</html>

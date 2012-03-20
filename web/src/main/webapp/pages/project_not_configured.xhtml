@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces"
+	xmlns:prime="http://primefaces.prime.com.tr/ui"
+	xmlns:lc="http://java.sun.com/jsf/composite/lmacommon">
+	
+	<ui:composition template="layout/layout.xhtml">
+	
+		<ui:param name="title" value="#{projectMsgs.welcome}" />
+
+		<ui:define name="content">
+				<f:loadBundle basename="messages.projectBundle" var="projectMsgs" />
+
+				<div id="centered_container">
+					<div id="centered_content" class="rounded_box shadowed">
+						
+						<div class="head_rounded">
+							<span class="left box_title">
+							</span>
+						</div>
+						<div id="content_properly" class="center">
+							<h1><h:outputText value="#{projectMsgs.welcome}"/></h1>
+							<p><h:outputText value="#{projectMsgs.nothingConfigured}"/></p>
+					
+						    <h:outputLink value="#{request.contextPath}/projects/new" styleClass="small button blue" title="#{projectMsgs.createProject}">  
+						        <h:outputText value="#{projectMsgs.createProject}"/>  
+						    </h:outputLink>  
+						
+						</div><!-- content_properly -->
+						
+						<div class="footer_rounded">
+						</div>
+					</div><!-- centered_content -->
+				</div><!-- centered_container -->
+		</ui:define>
+				
+	</ui:composition>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:lc="http://java.sun.com/jsf/composite/lmacommon"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces">
+<h:head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title><ui:insert name="title">#{loginMsgs.pageTitle}</ui:insert></title>
+	<link href="#{request.contextPath}/css/login.css" media="screen" rel="stylesheet" type="text/css" />
+</h:head>
+<body>
+	<div id="logo"></div>
+	<f:loadBundle basename="messages.loginBundle" var="loginMsgs" />
+	<div id="box" class="rounded_box dark_blue centered_box shadowed">
+		<lc:messages globalOnly="true" />
+		<div id="box_content">
+			<h:form id="formLogin" prependId="false">
+				<h:panelGrid columns="1">
+					<h:outputLabel value="#{loginMsgs.usernameLabel}" for="Username"/>
+					<h:inputText id="Username" class="input_text" value="#{loginBean.userName}" required="true" />
+					<h:message for="Username" errorClass="field_validation_error"/>
+					<h:outputLabel value="#{loginMsgs.passwordLabel}" for="Password"/>
+					<h:inputSecret id="Password" class="input_text" value="#{loginBean.password}" required="true" />
+					<h:message for="Password" errorClass="field_validation_error"/>
+					<br />
+					<br />
+				</h:panelGrid>
+				<h:commandButton value="#{loginMsgs.loginButton}" class="button_blue" action="#{loginBean.doLogin}"/>
+				<pretty:link mappingId="forgotMyPassword">#{loginMsgs.forgotPassword}</pretty:link>
+				
+			</h:form>
+		</div><!-- content --> 
+	</div><!-- box -->
+	
+</body>
+</html>
